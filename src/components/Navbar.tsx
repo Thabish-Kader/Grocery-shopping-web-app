@@ -40,7 +40,7 @@ export const Navbar = () => {
 				/>
 			</div>
 			<FaShoppingCart
-				className="hidden cursor-pointer py-2  text-white md:flex"
+				className="hidden cursor-pointer py-2  text-white duration-500 hover:scale-110 hover:text-green-500 md:flex"
 				size={50}
 			/>
 
@@ -51,7 +51,7 @@ export const Navbar = () => {
 			<div
 				className={
 					nav
-						? "absolute top-0 left-0 z-10 h-screen w-[310px]  bg-black bg-white text-green-500 duration-500"
+						? "absolute top-0 left-0 z-10 h-screen w-[310px]  bg-black text-green-500 duration-500"
 						: "absolute top-0 left-[-100%] z-10 h-screen  w-[310px] bg-white duration-500"
 				}
 			>
