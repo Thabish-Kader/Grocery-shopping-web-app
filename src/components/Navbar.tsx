@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { AiFillCloseCircle, AiOutlineLogin } from "react-icons/ai";
 import { BiRegistered, BiFoodMenu } from "react-icons/bi";
+import { GoSignOut } from "react-icons/go";
+import { auth } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
-export const Navbar = () => {
+export const Navbar: FC = () => {
 	const [nav, setNav] = useState<Boolean>(false);
+	const user = auth.currentUser;
+	const navigate = useNavigate();
 
+	const logout = async () => {
+		await signOut(auth);
+		navigate("/signin");
+	};
 	return (
 		<nav className=" mx-auto flex max-w-[1660px] items-center justify-between bg-black p-4 text-black">
 			<div className="flex justify-around ">
@@ -42,16 +52,15 @@ export const Navbar = () => {
 			<FaShoppingCart
 				className="hidden cursor-pointer py-2  text-white duration-500 hover:scale-110 hover:text-green-500 md:flex"
 				size={50}
-			/>
-
-			{/* overlay for side cart */}
+			/>{" "}
+			:{/* overlay for side cart */}
 			{nav && (
 				<div className="absolute top-0 left-0 z-10 h-screen w-full bg-black/70"></div>
 			)}
 			<div
 				className={
 					nav
-						? "absolute top-0 left-0 z-10 h-screen w-[310px]  bg-black text-green-500 duration-500"
+						? "absolute top-0 left-0 z-10  h-screen  w-[310px] bg-black text-green-500 duration-500"
 						: "absolute top-0 left-[-100%] z-10 h-screen  w-[310px] bg-white duration-500"
 				}
 			>
@@ -75,6 +84,12 @@ export const Navbar = () => {
 						</li>
 						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
 							<BiFoodMenu size={25} className="mr-4" /> Help
+						</li>
+						<li
+							onClick={logout}
+							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
+						>
+							<GoSignOut size={25} className="mr-4" /> Sign Out
 						</li>
 					</ul>
 				</div>

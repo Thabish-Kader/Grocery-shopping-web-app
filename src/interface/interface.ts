@@ -1,3 +1,5 @@
+import { User } from "firebase/auth";
+
 export interface CardInfo {
 	title: string;
 	subTitle: string;
@@ -14,16 +16,8 @@ export interface FoodData {
 	price: string;
 }
 
-export interface AppContextInterface {
-	uid: string;
-	email: string;
-	emailVerified: boolean;
-	phoneNumber: string;
-	password: string;
-	displayName: string;
-	photoUrl: string;
-	disabled: boolean;
-}
+export interface AppContextInterface extends User {}
+
 export interface AuthProviderProps {
 	children?: React.ReactNode;
 }

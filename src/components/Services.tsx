@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { dairy, fruits, vegetable } from "../data";
 import { FoodData } from "../interface/interface";
 
-export const Services = () => {
+export const Services: FC = () => {
 	const [data, setData] = useState<FoodData[]>(vegetable);
 	const allData: FoodData[] = [...dairy, ...fruits, ...vegetable];
 
