@@ -1,18 +1,23 @@
 import { FC, FormEvent, useState } from "react";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, provider } from "../config/firebase";
-import { Link } from "react-router-dom";
+import { auth, db, provider } from "../config/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
 
 export const SignUp: FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
-
+	const navigate = useNavigate();
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		await createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredentials) => {
-				console.log(userCredentials.user);
+				console.log(userCredentials.user.email);
+				setDoc(doc(db, "cart", `${userCredentials.user.email}`), {
+					myCart: [{}],
+				});
+				navigate("/");
 			})
 			.catch((error) => console.log(error.message));
 	};

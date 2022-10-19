@@ -12,7 +12,6 @@ export const Navbar: FC = () => {
 	const [nav, setNav] = useState<Boolean>(false);
 	const user = auth.currentUser;
 	const navigate = useNavigate();
-	console.log(user);
 
 	const logout = async () => {
 		await signOut(auth);
@@ -58,7 +57,7 @@ export const Navbar: FC = () => {
 					</button>
 				) : (
 					<button
-						onClick={() => navigate("signin")}
+						onClick={() => navigate("/signin")}
 						className="w-[100px] rounded-full bg-green-500 p-2 font-bold text-black duration-500 hover:scale-110 hover:bg-white hover:text-green-500"
 					>
 						Sign In

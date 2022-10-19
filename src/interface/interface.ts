@@ -16,8 +16,6 @@ export interface FoodData {
 	price: string;
 }
 
-export interface AppContextInterface extends User {}
-
-export interface AuthProviderProps {
-	children?: React.ReactNode;
+export interface ICart extends User {
+	myCart: [id: number, image: string];
 }

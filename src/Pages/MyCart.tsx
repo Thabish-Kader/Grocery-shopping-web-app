@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
+import { doc, onSnapshot } from "firebase/firestore";
+import { auth, db } from "../config/firebase";
+import { FoodData } from "../interface/interface";
 
 export const MyCart = () => {
+	const user = auth.currentUser;
+	const [cart, setCart] = useState<FoodData[] | undefined>([]);
+
+	useEffect(() => {
+		onSnapshot(doc(db, "cart", `${user?.email}`), (doc) => {
+			// setCart(doc?.data());
+		});
+	}, []);
+
 	return (
 		<div className="h-full w-full ">
 			<Navbar />
