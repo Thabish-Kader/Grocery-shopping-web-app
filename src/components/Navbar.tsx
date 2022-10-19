@@ -12,6 +12,7 @@ export const Navbar: FC = () => {
 	const [nav, setNav] = useState<Boolean>(false);
 	const user = auth.currentUser;
 	const navigate = useNavigate();
+	console.log(user);
 
 	const logout = async () => {
 		await signOut(auth);
@@ -41,16 +42,31 @@ export const Navbar: FC = () => {
 				</div>
 			</div>
 			{/* Search */}
-			<div className="flex w-[200px] items-center rounded-full bg-gray-200 px-2 sm:w-[400px] lg:w-[500px]">
-				<FaSearch size={25} />
+			<div className="ml-[200px] flex md:ml-[500px] lg:ml-[800px]">
+				{/* <FaSearch size={25} />
 				<input
 					className="bg-transparent p-2 focus:outline-none "
 					type="text"
 					placeholder="Search ..."
-				/>
+				/> */}
+				{user ? (
+					<button
+						onClick={logout}
+						className="w-[100px] rounded-full bg-green-500 p-2 font-bold text-black duration-500 hover:scale-110 hover:bg-white hover:text-green-500"
+					>
+						Sign Out
+					</button>
+				) : (
+					<button
+						onClick={() => navigate("signin")}
+						className="w-[100px] rounded-full bg-green-500 p-2 font-bold text-black duration-500 hover:scale-110 hover:bg-white hover:text-green-500"
+					>
+						Sign In
+					</button>
+				)}
 			</div>
 			<FaShoppingCart
-				className="hidden cursor-pointer py-2  text-white duration-500 hover:scale-110 hover:text-green-500 md:flex"
+				className="hidden cursor-pointer py-2 text-white  duration-500 hover:scale-125 hover:text-green-500 sm:flex"
 				size={50}
 			/>{" "}
 			:{/* overlay for side cart */}
@@ -72,8 +88,23 @@ export const Navbar: FC = () => {
 				<h1 className="p-4 text-2xl font-bold">Whole Foodz</h1>
 				<div>
 					<ul className="flex  flex-col py-4 pl-8 text-xl font-bold ">
-						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
+						<li
+							onClick={() => navigate("/mycart")}
+							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
+						>
 							<AiOutlineLogin size={25} className="mr-4" /> Orders
+						</li>
+						<li
+							onClick={() => navigate("/")}
+							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
+						>
+							<BiFoodMenu size={25} className="mr-4" /> Home
+						</li>
+						<li
+							onClick={logout}
+							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
+						>
+							<GoSignOut size={25} className="mr-4" /> Sign Out
 						</li>
 						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
 							<BiRegistered size={25} className="mr-4" />{" "}
@@ -81,15 +112,6 @@ export const Navbar: FC = () => {
 						</li>
 						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
 							<FaShoppingCart size={25} className="mr-4" /> Wallet
-						</li>
-						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
-							<BiFoodMenu size={25} className="mr-4" /> Help
-						</li>
-						<li
-							onClick={logout}
-							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
-						>
-							<GoSignOut size={25} className="mr-4" /> Sign Out
 						</li>
 					</ul>
 				</div>
