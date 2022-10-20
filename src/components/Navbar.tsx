@@ -40,14 +40,7 @@ export const Navbar: FC = () => {
 					<p className="text-xl">Pickup</p>
 				</div>
 			</div>
-			{/* Search */}
 			<div className="ml-[200px] flex md:ml-[500px] lg:ml-[800px]">
-				{/* <FaSearch size={25} />
-				<input
-					className="bg-transparent p-2 focus:outline-none "
-					type="text"
-					placeholder="Search ..."
-				/> */}
 				{user ? (
 					<button
 						onClick={logout}
@@ -65,6 +58,7 @@ export const Navbar: FC = () => {
 				)}
 			</div>
 			<FaShoppingCart
+				onClick={() => navigate("/mycart")}
 				className="hidden cursor-pointer py-2 text-white  duration-500 hover:scale-125 hover:text-green-500 sm:flex"
 				size={50}
 			/>{" "}

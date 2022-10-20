@@ -16,6 +16,6 @@ export interface FoodData {
 	price: string;
 }
 
-export interface ICart extends User {
-	myCart: [id: number, image: string];
+export interface ICart {
+	myCart?: [id: number, image: string, photo: string, price: string];
 }
