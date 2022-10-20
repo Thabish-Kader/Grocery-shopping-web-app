@@ -2,7 +2,8 @@
 
 ## React, typescript, tailwind project
 
-This project was created to learn and implement the fundamentals typescript. For this project the Vite web pack is utilized. This application allows the user to browse through three different categories of foods such as vegetables ,fruits and dairy. If the user clicks on a product that product is automatically added to the cart and stores in firestore. This application also has basic firebase authentication.
+This project is similar to my previous [Grocery App](https://grocery-app-121c4.web.app/). But this was built with Vite . My aim was to test out the performance of CRA and Vite and checkout Git Pages. After completeing this I realised that Vite outperformed CRA with a huge margin.
+
 
 ### New Frameworks, Libraries, Packages utilized
 
