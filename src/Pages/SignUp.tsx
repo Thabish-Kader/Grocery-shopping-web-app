@@ -1,7 +1,7 @@
 import { FC, FormEvent, useState } from "react";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db, provider } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
 

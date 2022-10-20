@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { doc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
-import { FoodData, ICart } from "../interface/interface";
+import { ICart } from "../interface/interface";
 
 export const MyCart = () => {
 	const user = auth.currentUser;

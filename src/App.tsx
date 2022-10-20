@@ -1,8 +1,4 @@
 import { useState } from "react";
-import { Banner } from "./components/Banner";
-import { CategoryCards } from "./components/CategoryCards";
-import { Navbar } from "./components/Navbar";
-import { Services } from "./components/Services";
 import { Routes, Route } from "react-router-dom";
 import { Landing } from "./Pages/Landing";
 import { SignUp } from "./Pages/SignUp";
