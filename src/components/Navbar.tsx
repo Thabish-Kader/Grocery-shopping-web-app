@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { AiFillCloseCircle, AiOutlineLogin } from "react-icons/ai";
 import { BiRegistered, BiFoodMenu } from "react-icons/bi";
+import { GoSignOut } from "react-icons/go";
+import { auth } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
-export const Navbar = () => {
+export const Navbar: FC = () => {
 	const [nav, setNav] = useState<Boolean>(false);
+	const user = auth.currentUser;
+	const navigate = useNavigate();
 
+	const logout = async () => {
+		await signOut(auth);
+		navigate("/signin");
+	};
 	return (
 		<nav className=" mx-auto flex max-w-[1660px] items-center justify-between bg-black p-4 text-black">
 			<div className="flex justify-around ">
@@ -30,28 +40,36 @@ export const Navbar = () => {
 					<p className="text-xl">Pickup</p>
 				</div>
 			</div>
-			{/* Search */}
-			<div className="flex w-[200px] items-center rounded-full bg-gray-200 px-2 sm:w-[400px] lg:w-[500px]">
-				<FaSearch size={25} />
-				<input
-					className="bg-transparent p-2 focus:outline-none "
-					type="text"
-					placeholder="Search ..."
-				/>
+			<div className="ml-[200px] flex md:ml-[500px] lg:ml-[800px]">
+				{user ? (
+					<button
+						onClick={logout}
+						className="w-[100px] rounded-full bg-green-500 p-2 font-bold text-black duration-500 hover:scale-110 hover:bg-white hover:text-green-500"
+					>
+						Sign Out
+					</button>
+				) : (
+					<button
+						onClick={() => navigate("/signin")}
+						className="w-[100px] rounded-full bg-green-500 p-2 font-bold text-black duration-500 hover:scale-110 hover:bg-white hover:text-green-500"
+					>
+						Sign In
+					</button>
+				)}
 			</div>
 			<FaShoppingCart
-				className="hidden cursor-pointer py-2  text-white duration-500 hover:scale-110 hover:text-green-500 md:flex"
+				onClick={() => navigate("/mycart")}
+				className="hidden cursor-pointer py-2 text-white  duration-500 hover:scale-125 hover:text-green-500 sm:flex"
 				size={50}
-			/>
-
-			{/* overlay for side cart */}
+			/>{" "}
+			:{/* overlay for side cart */}
 			{nav && (
 				<div className="absolute top-0 left-0 z-10 h-screen w-full bg-black/70"></div>
 			)}
 			<div
 				className={
 					nav
-						? "absolute top-0 left-0 z-10 h-screen w-[310px]  bg-black text-green-500 duration-500"
+						? "absolute top-0 left-0 z-10  h-screen  w-[310px] bg-black text-green-500 duration-500"
 						: "absolute top-0 left-[-100%] z-10 h-screen  w-[310px] bg-white duration-500"
 				}
 			>
@@ -63,8 +81,23 @@ export const Navbar = () => {
 				<h1 className="p-4 text-2xl font-bold">Whole Foodz</h1>
 				<div>
 					<ul className="flex  flex-col py-4 pl-8 text-xl font-bold ">
-						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
+						<li
+							onClick={() => navigate("/mycart")}
+							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
+						>
 							<AiOutlineLogin size={25} className="mr-4" /> Orders
+						</li>
+						<li
+							onClick={() => navigate("/")}
+							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
+						>
+							<BiFoodMenu size={25} className="mr-4" /> Home
+						</li>
+						<li
+							onClick={logout}
+							className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl"
+						>
+							<GoSignOut size={25} className="mr-4" /> Sign Out
 						</li>
 						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
 							<BiRegistered size={25} className="mr-4" />{" "}
@@ -72,9 +105,6 @@ export const Navbar = () => {
 						</li>
 						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
 							<FaShoppingCart size={25} className="mr-4" /> Wallet
-						</li>
-						<li className="mr-10 flex cursor-pointer border-b-2 border-green-500 py-4 text-xl">
-							<BiFoodMenu size={25} className="mr-4" /> Help
 						</li>
 					</ul>
 				</div>

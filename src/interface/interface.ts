@@ -1,3 +1,5 @@
+import { User } from "firebase/auth";
+
 export interface CardInfo {
 	title: string;
 	subTitle: string;
@@ -12,4 +14,8 @@ export interface FoodData {
 	name: string;
 	image: string;
 	price: string;
+}
+
+export interface ICart {
+	myCart?: [id: number, image: string, photo: string, price: string];
 }
