@@ -7,13 +7,10 @@ import { FoodData, ICart } from "../interface/interface";
 export const MyCart = () => {
 	const user = auth.currentUser;
 	const [cart, setCart] = useState<ICart | undefined>();
-	// let cartArray : FoodData[] = [];
 
 	useEffect(() => {
 		onSnapshot(doc(db, "cart", `${user?.email}`), (doc) => {
 			setCart(doc.data());
-			console.log(cart?.myCart);
-			// cartArray = [cart?.myCart];
 		});
 	}, []);
 
@@ -22,7 +19,7 @@ export const MyCart = () => {
 			<Navbar />
 
 			<div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-				{cart?.myCart?.map((item, id) => (
+				{cart?.myCart?.map((item: any, id) => (
 					<>
 						<div
 							key={id}
