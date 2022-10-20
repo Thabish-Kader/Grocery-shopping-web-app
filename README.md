@@ -2,13 +2,17 @@
 
 ## React, typescript, tailwind project
 
-This project was created to learn and implement typescript.
+This project was created to learn and implement the fundamentals typescript. For this project the Vite web pack is utilized. This application allows the user to browse through three different categories of foods such as vegetables ,fruits and dairy. If the user clicks on a product that product is automatically added to the cart and stores in firestore.
 
 ### New Frameworks, Libraries, Packages utilized
 
 1. Vite
 2. Typescript
 3. Tailwind techniques
+
+### Skills Acquired
+1 . Typescript Fundamentals (interface, props with typescript)
+2. Usage of Vite webpack
 
 ### Screenshots
 
